@@ -36,7 +36,7 @@ const CameraRig = ({ children }: CameraProps) => {
     // Used for rotating motion
     easing.dampE(
       group.current!.rotation, // current
-      [state.pointer.y, -state.pointer.x / 3, 0], // target
+      [state.pointer.y / 2, -state.pointer.x / 3, 0], // target
       0.25, // speed
       delta // time since last frame
     ); // Each time called it moves closer to target value

@@ -17,6 +17,7 @@ import { axiosInstance } from "../../config/axios";
 interface ActiveFilterTab {
   logoShirt: boolean;
   stylishShirt: boolean;
+  save: boolean;
 }
 
 type DecalTypeKey = keyof typeof DecalTypes;
@@ -30,6 +31,7 @@ const Customizer = () => {
   const [activeFilterTab, setActiveFilterTab] = useState<ActiveFilterTab>({
     logoShirt: true,
     stylishShirt: false,
+    save: false,
   });
 
   // show tab content depending on the activeTab
@@ -90,6 +92,9 @@ const Customizer = () => {
       case "stylishShirt":
         state.isFullTexture = !activeFilterTab[tabName];
         break;
+      case "save":
+        downloadCanvasToImage();
+        return; // Don't update the state for save tab
       default:
         state.isLogoTexture = true;
         state.isFullTexture = false;
@@ -97,7 +102,6 @@ const Customizer = () => {
     }
 
     // after setting the state, activeFilterTab is updated
-
     setActiveFilterTab((prevState) => {
       return {
         ...prevState,
