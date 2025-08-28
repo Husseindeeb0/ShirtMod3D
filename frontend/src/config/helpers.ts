@@ -16,7 +16,7 @@ export const downloadCanvasToImage = () => {
 };
 
 export const reader = (file: File): Promise<string | ArrayBuffer | null> =>
-  new Promise((resolve, reject) => {
+  new Promise((resolve, _reject) => {
     const fileReader = new FileReader();
     fileReader.onload = () => resolve(fileReader.result);
     fileReader.readAsDataURL(file);

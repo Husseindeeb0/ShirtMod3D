@@ -3,7 +3,6 @@ import { useSnapshot } from "valtio";
 import { Decal, useGLTF, useTexture } from "@react-three/drei";
 
 import state from "../store";
-import Nodes from "three/src/renderers/common/nodes/Nodes.js";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 
@@ -13,7 +12,7 @@ const Shirt = () => {
   const logoTexture = useTexture(snap.logoDecal);
   const fullTexture = useTexture(snap.fullDecal);
 
-  useFrame((state, delta) =>
+  useFrame((_state, delta) =>
     // Used for colors
     easing.dampC(
       (materials.lambert1 as THREE.MeshLambertMaterial).color,
@@ -23,10 +22,10 @@ const Shirt = () => {
     )
   );
 
-  const stateString = JSON.stringify(snap);
+  const _stateString = JSON.stringify(snap);
 
   return (
-    <group key={stateString}>
+    <group key={_stateString}>
       <mesh
         castShadow
         geometry={(nodes.T_Shirt_male as THREE.Mesh).geometry}
