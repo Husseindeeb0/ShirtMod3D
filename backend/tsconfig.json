@@ -10,7 +10,9 @@
     "strict": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "types": ["node"]
   },
-  "include": ["index.ts"],
+  "include": ["index.ts", "routes/**/*"],
   "exclude": ["node_modules", "dist"]
 }
