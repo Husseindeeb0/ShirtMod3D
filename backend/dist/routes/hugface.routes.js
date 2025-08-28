@@ -1,8 +1,13 @@
-import express from "express";
-import dotenv from "dotenv";
-import axios from "axios";
-dotenv.config();
-const router = express.Router();
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const dotenv_1 = __importDefault(require("dotenv"));
+const axios_1 = __importDefault(require("axios"));
+dotenv_1.default.config();
+const router = express_1.default.Router();
 const HF_API_KEY = process.env.HF_API_KEY;
 router.route("/").post(async (req, res) => {
     try {
@@ -12,7 +17,7 @@ router.route("/").post(async (req, res) => {
             return res.status(500).json({ message: "HF_API_KEY is not configured" });
         }
         const url = "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0";
-        const hfResponse = await axios.post(url, { inputs: prompt }, {
+        const hfResponse = await axios_1.default.post(url, { inputs: prompt }, {
             headers: {
                 Authorization: `Bearer ${HF_API_KEY}`,
                 Accept: "image/png",
@@ -59,4 +64,4 @@ router.route("/").post(async (req, res) => {
         res.status(500).json({ message: "Something went wrong" });
     }
 });
-export default router;
+exports.default = router;
